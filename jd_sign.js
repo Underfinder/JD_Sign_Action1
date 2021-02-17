@@ -105,19 +105,26 @@ function main() {
   if (!cookie) {
     console.log('请配置京东cookie!'); return;
   }
+  console.log("开始执行。。。")
+  // 2、替换cookie
+  setupCookie()
+  // 3、执行脚本
+  exec(`node '${js_path}' >> '${result_path}'`);
+   // 4、发送推送
+//    sendNotificationIfNeed() 
 
   // 1、下载脚本
-  download(js_url, './').then(res=>{
+ // download(js_url, './').then(res=>{
     // 2、替换cookie
-    setupCookie()
+   // setupCookie()
     // 3、执行脚本
-    exec(`node '${js_path}' >> '${result_path}'`);
+   // exec(`node '${js_path}' >> '${result_path}'`);
     // 4、发送推送
-    sendNotificationIfNeed() 
-  }).catch((err)=>{
-    console.log('脚本文件下载失败，任务中断！');
-    fs.writeFileSync(error_path, err, 'utf8')
-  })
+   // sendNotificationIfNeed() 
+  //}).catch((err)=>{
+ //   console.log('脚本文件下载失败，任务中断！');
+ //   fs.writeFileSync(error_path, err, 'utf8')
+  //})
 
 }
 
