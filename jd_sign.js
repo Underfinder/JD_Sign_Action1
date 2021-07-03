@@ -75,16 +75,16 @@ function sendNotificationIfNeed() {
 
     let title = "京东签到_" + dateFormat();
     let content = fs.readFileSync(result_path, "utf8")
+    let callbackUrl = 'https://music.aliluv.cn/api/jdsgin'
         // 去除末尾的换行 
     let token = push_key.replace(/[\r\n]/g, "")
-        //let SCKEY = push_key.replace(/[\r\n]/g, "")
     const options = {
-        //uri: `https://sctapi.ftqq.com/${SCKEY}.send`,
         uri: `http://www.pushplus.plus/send`,
-        form: { token, title, content },
+        form: { token, title, content, callbackUrl },
         json: true,
         method: 'POST'
     }
+
 
     rp.post(options).then(res => {
         const code = res['errno'];
