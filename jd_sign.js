@@ -73,16 +73,15 @@ function sendNotificationIfNeed() {
         return;
     }
 
-    let text = "京东签到_" + dateFormat();
-    let desp = fs.readFileSync(result_path, "utf8")
-
-    // 去除末尾的换行
-    let SCKEY = push_key.replace(/[\r\n]/g, "")
-
-    //新版Server酱  https://sct.ftqq.com/
+    let title = "京东签到_" + dateFormat();
+    let content = fs.readFileSync(result_path, "utf8")
+        // 去除末尾的换行 
+    let token = push_key.replace(/[\r\n]/g, "")
+        //let SCKEY = push_key.replace(/[\r\n]/g, "")
     const options = {
-        uri: `https://sctapi.ftqq.com/${SCKEY}.send`,
-        form: { text, desp },
+        //uri: `https://sctapi.ftqq.com/${SCKEY}.send`,
+        uri: `http://www.pushplus.plus/send`,
+        form: { token, title, content },
         json: true,
         method: 'POST'
     }
